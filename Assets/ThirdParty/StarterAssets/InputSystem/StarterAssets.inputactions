@@ -234,6 +234,17 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c4469d4-32b4-4c9c-90ae-b7f29b454658",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "",
                     "action": "Click",
                     "isComposite": false,
