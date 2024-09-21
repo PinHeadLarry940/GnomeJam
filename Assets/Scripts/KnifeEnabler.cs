@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KnifeEnabler : MonoBehaviour
 {
@@ -11,5 +12,9 @@ public class KnifeEnabler : MonoBehaviour
         Knife.SetActive(true);
     }
 
- 
+    void OnClick()
+    {
+        Debug.Log("stab");
+
+    }
 }
