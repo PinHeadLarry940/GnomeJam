@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3937464460715775159}
   - component: {fileID: 5002610671392574014}
   - component: {fileID: 153451402234348067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KNIFE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7452473697185339096}
   - component: {fileID: 5270251487933184768}
   - component: {fileID: 2656666973770496156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gnome1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6602321355599428016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 5361536499776835989}
   - component: {fileID: 6541457792329732048}
   - component: {fileID: 3705470372762646442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536894316015417379}
   - component: {fileID: 1733775528439343520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3644539425219905943}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2480194900401469172}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camerpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 2507435234338646184}
   - component: {fileID: 4623815448966494502}
   - component: {fileID: 6740593081263246912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ MonoBehaviour:
   cam: {fileID: 2377706622113279183}
   knifeAnimator: {fileID: 153451402234348067}
   gnomeMesh: {fileID: 1359018429240970527}
-  target: {fileID: 1093746016319727656}
+  hitFX: {fileID: 0}
   moveSpeed: 2.5
   walkSpeed: 2.5
   sprintSpeed: 3.5
@@ -629,16 +629,18 @@ MonoBehaviour:
     m_Bits: 64
   maxSlope: 45
   orientation: {fileID: 3644539425219905943}
-  atkDist: 1
+  atkDist: 2
   atkSpeed: 1
   atkDelay: 0.4
   atkLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   audiosource: {fileID: 0}
   swingSound: {fileID: 0}
   hitSound: {fileID: 0}
   readytoatk: 1
+  points: 0
+  pointtext: {fileID: 0}
   state: 0
 --- !u!114 &6740593081263246912
 MonoBehaviour:
@@ -663,7 +665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093746016319727656}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lookat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

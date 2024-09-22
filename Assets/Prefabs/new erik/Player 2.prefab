@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9116386349749476715}
   - component: {fileID: 7278762808724399539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4133542875176256747}
   - component: {fileID: 3355967067493368844}
   - component: {fileID: 3751080831216718674}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 6022230671198575660}
   - component: {fileID: 2381035687191141228}
   - component: {fileID: 6179948333475070316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   cam: {fileID: 2593290178547090556}
   knifeAnimator: {fileID: 6123131874092294630}
   gnomeMesh: {fileID: 8342609045711777602}
-  target: {fileID: 0}
+  hitFX: {fileID: 0}
   moveSpeed: 2.5
   walkSpeed: 2.5
   sprintSpeed: 3.5
@@ -325,23 +325,25 @@ MonoBehaviour:
   jumpKey: 330
   sprintKey: 338
   crouchKey: 331
-  atkKey: 323
+  atkKey: 332
   playerHeight: 0.5
   watGround:
     serializedVersion: 2
     m_Bits: 64
   maxSlope: 45
   orientation: {fileID: 6913985409409194775}
-  atkDist: 1
+  atkDist: 2
   atkSpeed: 1
   atkDelay: 0.4
   atkLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   audiosource: {fileID: 0}
   swingSound: {fileID: 0}
   hitSound: {fileID: 0}
   readytoatk: 1
+  points: 0
+  pointtext: {fileID: 0}
   state: 0
 --- !u!1 &4856301799174204154
 GameObject:
@@ -352,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7270701730524709538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6913985409409194775}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +420,7 @@ GameObject:
   - component: {fileID: 6844861870026423779}
   - component: {fileID: 5082741183975318499}
   - component: {fileID: 6123131874092294630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KNIFE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +539,7 @@ GameObject:
   - component: {fileID: 5737872124051068623}
   - component: {fileID: 2024878539341388531}
   - component: {fileID: 7279384610657926077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gnome1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3824953999648824307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camerpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
