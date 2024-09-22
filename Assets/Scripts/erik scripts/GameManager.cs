@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour
     public GameObject playerKnife3;
     public GameObject playerKnife4;
 
-   
+    public Transform playerspawn1;
+    public Transform playerspawn2;
+    public Transform playerspawn3;
+    public Transform playerspawn4;
 
 
     public TextMeshProUGUI test;
@@ -52,11 +55,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+
         TimerOn = true;
         currentRoundTime = roundtimer;
         TimeLeft = knifeTime;
         playermove = Player1.GetComponent<PlayerMove>();
         playermove2 = Player2.GetComponent<PlayerMove2>();
+        MoveToSpawn();
 
         if (knifeguy == 0)
         {
@@ -81,6 +86,19 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+    void MoveToSpawn()
+    {
+        //move all the players to their spawn points
+        Debug.Log("move");
+        Rigidbody Player1RB = Player1.GetComponent<Rigidbody>();
+        Rigidbody Player2RB = Player2.GetComponent<Rigidbody>();
+        Rigidbody Player3RB = Player3.GetComponent<Rigidbody>();
+        Rigidbody Player4RB = Player4.GetComponent<Rigidbody>();
+        Player1RB.MovePosition(playerspawn1.position);
+        Player2RB.MovePosition(playerspawn2.position);
+        Player3RB.MovePosition(playerspawn3.position);
+        Player4RB.MovePosition(playerspawn4.position);
     }
 
     private void Update()
