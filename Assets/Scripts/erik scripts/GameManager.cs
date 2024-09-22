@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     PlayerMove playermove;
     PlayerMove2 playermove2;
 
-    
+    public Animator gnomeAnimator1;
+    public Animator gnomeAnimator2;
 
 
     private void Awake()
@@ -115,11 +116,16 @@ public class GameManager : MonoBehaviour
         playerspawn1 = Playerspawns[currentspawn1];
         playerspawn2 = Playerspawns[currentspawn2];
     }
-
+    public void ResetAnims()
+    {
+        gnomeAnimator1.SetBool("isDead", false);
+        gnomeAnimator2.SetBool("isDead", false);
+    }
 
     public void MoveToSpawn()
     {
         RandomSpawn();
+        ResetAnims();
         //move all the players to their spawn points depending on the gamemode
         if (twoplayermode)
         {

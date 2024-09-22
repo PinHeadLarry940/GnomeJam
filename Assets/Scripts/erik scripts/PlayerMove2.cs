@@ -60,7 +60,7 @@ public class PlayerMove2 : MonoBehaviour
     public AudioClip swingSound;
     public AudioClip hitSound;
 
-    bool cankill;
+    bool cankill = true;
     bool attacking = false;
     public bool readytoatk = true;
     public int points;
@@ -226,9 +226,9 @@ public class PlayerMove2 : MonoBehaviour
         // Debug.Log("am i on ground?" + grounded);
         //Debug.DrawRay()
     }
+    
     private void MyInput()
     {
-
         horizontalInput = Input.GetAxisRaw("Leftstick X axis");
         verticalInput = Input.GetAxisRaw("Leftstick Y axis");
 

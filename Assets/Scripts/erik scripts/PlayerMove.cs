@@ -194,7 +194,8 @@ public class PlayerMove : MonoBehaviour
         StateHandler();
 
 
-
+        
+        
         //handle drag
 
         if (grounded)
@@ -218,9 +219,9 @@ public class PlayerMove : MonoBehaviour
         //Debug.Log("am i on ground?" + grounded);
         //Debug.DrawRay()
     }
+    
     private void MyInput()
     {
-
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 

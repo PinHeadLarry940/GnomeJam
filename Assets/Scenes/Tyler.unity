@@ -238,6 +238,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 679613110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &153761224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153761227}
+  - component: {fileID: 153761226}
+  - component: {fileID: 153761225}
+  m_Layer: 0
+  m_Name: VisualScripting SceneVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &153761225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153761224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &153761226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153761224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!4 &153761227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153761224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,9 +1002,12 @@ MonoBehaviour:
   playerspawn2: {fileID: 1765574225}
   playerspawn3: {fileID: 0}
   playerspawn4: {fileID: 0}
+  Playerspawns: []
   test: {fileID: 126489337}
   TimeLeft: 0
   TimerOn: 0
+  gnomeAnimator1: {fileID: 2055748243105392024}
+  gnomeAnimator2: {fileID: 6538209671241157645}
 --- !u!4 &865139205
 Transform:
   m_ObjectHideFlags: 0
@@ -6691,6 +6754,11 @@ PrefabInstance:
       propertyPath: pointtext
       value: 
       objectReference: {fileID: 1385410035}
+    - target: {fileID: 6179948333475070316, guid: 151083a7c83b7fd48a21ac351da9d465,
+        type: 3}
+      propertyPath: gnomeAnimator
+      value: 
+      objectReference: {fileID: 6538209671241157645}
     - target: {fileID: 8411019204988138689, guid: 151083a7c83b7fd48a21ac351da9d465,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6768,6 +6836,11 @@ PrefabInstance:
       propertyPath: pointtext
       value: 
       objectReference: {fileID: 512347663}
+    - target: {fileID: 4623815448966494502, guid: dca72d2bb7ff44d469b7085a79eb175e,
+        type: 3}
+      propertyPath: gnomeAnimator
+      value: 
+      objectReference: {fileID: 2055748243105392024}
     - target: {fileID: 5071901311561254622, guid: dca72d2bb7ff44d469b7085a79eb175e,
         type: 3}
       propertyPath: m_Name
@@ -7013,3 +7086,4 @@ SceneRoots:
   - {fileID: 1393398103}
   - {fileID: 1648690656}
   - {fileID: 1765574225}
+  - {fileID: 153761227}
