@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
         TimerOn = true;
         currentRoundTime = roundtimer;
         TimeLeft = knifeTime;
-
-
+        playermove = Player1.GetComponent<PlayerMove>();
+        playermove2 = Player2.GetComponent<PlayerMove2>();
 
         if (knifeguy == 0)
         {

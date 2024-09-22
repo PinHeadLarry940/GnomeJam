@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject cam;
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
-    public Transform target;
+   
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;

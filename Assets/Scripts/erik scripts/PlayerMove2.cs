@@ -7,7 +7,7 @@ public class PlayerMove2 : MonoBehaviour
     public GameObject cam;
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
-    public Transform target;
+    
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -151,14 +151,18 @@ public class PlayerMove2 : MonoBehaviour
             rb.drag = 0;
 
 
-        if (Input.GetAxisRaw("Right Trigger") > 0.5f)
+        if (Input.GetKey(atkKey))
         {
             Attack();
             //play anims
-
+           // Debug.Log("i attack");
 
         }
-        gnomeMesh.transform.LookAt(target, Vector3.forward);
+        var rotation = cam.transform.localRotation;
+        rotation.x = 0;
+        rotation.z = 0;
+        gnomeMesh.transform.localRotation = rotation;
+
         //Debug.Log("ready to jump" + readyToJump);
         // Debug.Log("am i on ground?" + grounded);
         //Debug.DrawRay()
