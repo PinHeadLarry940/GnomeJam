@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     public Transform playerspawn4;
 
 
+    public Transform[] Playerspawns;
+    private int spawncount;
+    private int currentspawn1;
+    private int currentspawn2;
+
     public TextMeshProUGUI test;
     public float TimeLeft;
     public bool TimerOn = false;
@@ -64,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        spawncount = Playerspawns.Length;
+        
 
         TimerOn = true;
         currentRoundTime = roundtimer;
@@ -96,8 +103,23 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    public void RandomSpawn()
+    {
+        currentspawn1 = Random.Range(0, spawncount);
+        currentspawn2 = Random.Range(0, spawncount);
+
+        if (currentspawn1 == currentspawn2)
+            currentspawn1 = currentspawn2 - 1;
+
+        playerspawn1 = Playerspawns[currentspawn1];
+        playerspawn2 = Playerspawns[currentspawn2];
+    }
+
+
     public void MoveToSpawn()
     {
+        RandomSpawn();
         //move all the players to their spawn points depending on the gamemode
         if (twoplayermode)
         {
