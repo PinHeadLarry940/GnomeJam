@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public float roundtimer = 240f;
     private float currentRoundTime = 0f;
+    private float roundtimeleft;
 
     public float knifeguy;
     private bool twoplayermode;
@@ -41,18 +42,21 @@ public class GameManager : MonoBehaviour
     private int currentspawn2;
 
     public TextMeshProUGUI test;
+    public TextMeshProUGUI roundtime;
     public float TimeLeft;
     public bool TimerOn = false;
 
     PlayerMove playermove;
     PlayerMove2 playermove2;
 
-    
+    public GameObject gameoverpanel;
+    public GameObject p1wins;
+    public GameObject p2wins;
 
 
     private void Awake()
     {
-
+        Time.timeScale = 1.0f;
         if (Instance == null)
         {
             Instance = this;
@@ -69,12 +73,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         spawncount = Playerspawns.Length;
         
 
         TimerOn = true;
         currentRoundTime = roundtimer;
         TimeLeft = knifeTime;
+        roundtimeleft = roundtimer;
         playermove = Player1.GetComponent<PlayerMove>();
         playermove2 = Player2.GetComponent<PlayerMove2>();
         MoveToSpawn();
@@ -146,6 +152,18 @@ public class GameManager : MonoBehaviour
    
     private void Update()
     {
+
+
+            roundtimeleft -= Time.deltaTime;
+            UpdateTimer2(roundtimeleft);
+        
+        
+       
+
+
+
+
+
         if (TimerOn)
         {
             if (TimeLeft > 0)
@@ -163,6 +181,8 @@ public class GameManager : MonoBehaviour
         else
             Invoke(nameof(ResetTimer), 1f);
 
+        if(roundtimeleft < 0.1)
+            EndGame();
 
 
     }
@@ -175,6 +195,43 @@ public class GameManager : MonoBehaviour
 
         test.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+
+    void EndGame()
+    {
+        Time.timeScale = 0f;
+        gameoverpanel.SetActive(true);
+
+        PlayerMove playerMove = Player1.GetComponent<PlayerMove>();
+        PlayerMove2 playerMove2 = Player2.GetComponent<PlayerMove2>();
+
+        if (playerMove.points > playerMove2.points)
+        {
+            p1wins.SetActive(true);
+            p2wins.SetActive(false);
+        }
+        else if (playerMove2.points > playerMove.points)
+        {
+            p1wins.SetActive(false);
+            p2wins.SetActive(true);
+        }
+
+    }
+
+
+
+
+    void UpdateTimer2(float currentTime)
+    {
+        currentTime += 1;
+
+        float minutes = Mathf.FloorToInt(currentTime / 60);
+        float seconds = Mathf.FloorToInt(currentTime % 60);
+
+        roundtime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+
 
     private void ResetTimer()
     {
