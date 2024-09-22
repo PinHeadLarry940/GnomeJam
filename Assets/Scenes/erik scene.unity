@@ -2633,6 +2633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4623815448966494502, guid: dca72d2bb7ff44d469b7085a79eb175e,
         type: 3}
+      propertyPath: gM
+      value: 
+      objectReference: {fileID: 865139204}
+    - target: {fileID: 4623815448966494502, guid: dca72d2bb7ff44d469b7085a79eb175e,
+        type: 3}
       propertyPath: hitFX
       value: 
       objectReference: {fileID: 2055734208626792528}

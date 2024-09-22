@@ -60,6 +60,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip swingSound;
     public AudioClip hitSound;
 
+    bool cankill = true;
     bool attacking = false;
     public bool readytoatk = true;
     public int points;
@@ -100,6 +101,7 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator MoveToSpawn2()
     {
+        //need this to only do it once, if you stab the body again it shouldn't run this again
         yield return new WaitForSeconds(3);
         Animator enemygnomeanim = GameObject.Find("Player").GetComponent<Animator>();
         PlayerMove pmove = GameObject.Find("Player").GetComponent<PlayerMove>();
@@ -108,6 +110,7 @@ public class PlayerMove : MonoBehaviour
         enemygnomeanim.SetBool("isDead", false);
         enemygnomeanim.Play("IDLE");
         GameManager.Instance.MoveToSpawn();
+        cankill = true;
 
     }
 
@@ -119,9 +122,10 @@ public class PlayerMove : MonoBehaviour
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
         {
             Debug.DrawRay(cam.transform.position, cam.transform.forward * 100, Color.red);
-            if (hit.transform.CompareTag("Player"))
+            if (hit.transform.CompareTag("Player") && cankill)
             {
                 //kill target
+                cankill = false;
                 Debug.Log("hit gnome");
                 PointInc();
                 pointtext.text = points.ToString();
@@ -132,6 +136,7 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(MoveToSpawn2());
                 //hit sound
                 HitTarget(hit.point);
+               
                 
             }
             

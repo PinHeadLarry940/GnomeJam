@@ -60,6 +60,7 @@ public class PlayerMove2 : MonoBehaviour
     public AudioClip swingSound;
     public AudioClip hitSound;
 
+    bool cankill;
     bool attacking = false;
     public bool readytoatk = true;
     public int points;
@@ -111,6 +112,7 @@ public class PlayerMove2 : MonoBehaviour
         enemygnomeanim.SetBool("isDead", false);
         enemygnomeanim.Play("IDLE");
         GameManager.Instance.MoveToSpawn();
+        cankill = true;
 
     }
 
@@ -123,9 +125,10 @@ public class PlayerMove2 : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
         {
 
-            if (hit.transform.CompareTag("Player"))
+            if (hit.transform.CompareTag("Player") && cankill)
             {
                 //kill target
+                cankill = false;
                 Debug.Log("hit gnome");
                 //hit sound
                 PointInc();
