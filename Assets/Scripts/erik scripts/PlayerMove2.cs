@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMove2 : MonoBehaviour
 {
     public GameObject cam;
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
-    
+    public GameObject hitFX;
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -59,6 +60,8 @@ public class PlayerMove2 : MonoBehaviour
 
     bool attacking = false;
     public bool readytoatk = true;
+    public int points;
+    public TextMeshProUGUI pointtext;
 
     public void Attack()
     {
@@ -79,15 +82,21 @@ public class PlayerMove2 : MonoBehaviour
 
     private void ATKRaycast()
     {
+        Debug.Log("atk");
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
         {
 
-            if (hit.collider.CompareTag("Player"))
+            if (hit.transform.CompareTag("Player"))
             {
                 //kill target
-
+                Debug.Log("hit gnome");
                 //hit sound
+                points = points += 1;
+                pointtext.text = points.ToString();
+                Debug.Log(points);
                 HitTarget(hit.point);
+               
             }
 
         }
@@ -105,9 +114,12 @@ public class PlayerMove2 : MonoBehaviour
 
     private void HitTarget(Vector3 pos)
     {
+        GameObject GO = Instantiate(hitFX, pos, Quaternion.identity);
+        Destroy(GO, 2);
         audiosource.pitch = 1;
         audiosource.PlayOneShot(hitSound);
 
+       
 
     }
 

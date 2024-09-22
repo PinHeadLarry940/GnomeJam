@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject cam;
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
+    public GameObject hitFX;
    
     public float moveSpeed;
     public float walkSpeed;
@@ -59,7 +61,8 @@ public class PlayerMove : MonoBehaviour
 
     bool attacking = false;
     public bool readytoatk = true;
-
+    public int points;
+    public TextMeshProUGUI pointtext;
     public void Attack()
     {
         if (!readytoatk || attacking) return;
@@ -77,18 +80,24 @@ public class PlayerMove : MonoBehaviour
 
     private void ATKRaycast()
     {
+        Debug.Log("atk");
+        GameObject gnomehit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
         {
-
-            if (hit.collider.CompareTag("Player"))
+            Debug.DrawRay(cam.transform.position, cam.transform.forward * 100, Color.red);
+            if (hit.transform.CompareTag("Player"))
             {
                 //kill target
-
+                Debug.Log("hit gnome");
+                points = points += 1;
+                pointtext.text = points.ToString();
+                gnomehit = hit.collider.gameObject;
+                Debug.Log(points);
                 //hit sound
                 HitTarget(hit.point);
-
+                
             }
-
+            
         }
 
     }
@@ -104,6 +113,9 @@ public class PlayerMove : MonoBehaviour
 
     private void HitTarget(Vector3 pos)
     {
+
+        GameObject GO = Instantiate(hitFX, pos, Quaternion.identity);
+        Destroy(GO, 2);
         audiosource.pitch = 1;
         audiosource.PlayOneShot(hitSound);
 
@@ -154,19 +166,11 @@ public class PlayerMove : MonoBehaviour
             Attack();
             //play anims
         }
-        //Vector3 look_xz = new Vector3(target.position.x, target.position.z, 0);
-        //gnomeMesh.transform.LookAt(look_xz, Vector3.up);
-        //float angle = Mathf.Atan2(cam.transform.forward.z, cam.transform.forward.x) * Mathf.Rad2Deg;
- 
+        
         var rotation = cam.transform.localRotation;
         rotation.x = 0;
         rotation.z = 0;
-        gnomeMesh.transform.localRotation = rotation;
-
-        //gnomeMesh.transform.RotateAround(transform.position, Vector3.up, angle);
-
-        //gnomeMesh.transform.forward = cam.transform.forward;
-        //gnomeMesh.transform.LookAt(target, Vector3.up);
+        gnomeMesh.transform.localRotation = rotation;    
         //Debug.Log("atk ready =" + readytoatk);
         //Debug.Log("ready to jump" + readyToJump);
         //Debug.Log("am i on ground?" + grounded);

@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     PlayerMove playermove;
     PlayerMove2 playermove2;
 
+    
+
 
     private void Awake()
     {
