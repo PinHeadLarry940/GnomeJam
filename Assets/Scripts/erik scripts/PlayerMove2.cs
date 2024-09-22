@@ -15,7 +15,7 @@ public class PlayerMove2 : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float crouchSpeed;
-
+    public bool ismoving = false;
     public float groundDrag;
 
     public float jumpForce;
@@ -232,8 +232,16 @@ public class PlayerMove2 : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Leftstick X axis");
         verticalInput = Input.GetAxisRaw("Leftstick Y axis");
 
+        if (verticalInput > 0 || verticalInput < 0)
+            ismoving = true;
+        else ismoving = false;
+
+        if (horizontalInput > 0 || horizontalInput < 0)
+            ismoving = true;
+        else ismoving = false;
+
         //when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             Debug.Log("I jump");
             readyToJump = false;

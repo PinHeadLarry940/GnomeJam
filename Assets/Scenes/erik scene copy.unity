@@ -1359,7 +1359,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mumbles:
-  - {fileID: 8300000, guid: cd43706e2f84252488f1670f535f0072, type: 3}
   - {fileID: 8300000, guid: 30b19b03c572ea449862e01736c0a8be, type: 3}
   - {fileID: 8300000, guid: cb79c5fc663deab4098f349e6e9b18d4, type: 3}
   - {fileID: 8300000, guid: 5cafc1b88a5e4944792ed21cae0f4c00, type: 3}
@@ -1594,7 +1593,7 @@ Transform:
   m_GameObject: {fileID: 1648690655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.9, y: 0.5927442, z: 1.8773814}
+  m_LocalPosition: {x: 12.54, y: 0.5927442, z: -0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1732,7 +1731,7 @@ Transform:
   m_GameObject: {fileID: 1765574224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.43, y: 2.62, z: 1.8773814}
+  m_LocalPosition: {x: -21.4, y: 2.62, z: -4.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
