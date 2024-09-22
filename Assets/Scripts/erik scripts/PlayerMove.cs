@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
     public GameObject hitFX;
-   
+    public Animator gnomeAnimator;
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -62,6 +63,7 @@ public class PlayerMove : MonoBehaviour
     bool attacking = false;
     public bool readytoatk = true;
     public int points;
+    private bool pointsincreased;
     public TextMeshProUGUI pointtext;
     public void Attack()
     {
@@ -78,6 +80,23 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    private void PointInc()
+    {
+        if (!pointsincreased)
+        {
+            points = points += 1;
+            pointsincreased = true;
+            Invoke(nameof(PointInc), 2f);
+        }
+       
+
+    }
+
+    private void PointBuffer()
+    {
+
+        pointsincreased = false;
+    }
     private void ATKRaycast()
     {
         Debug.Log("atk");
@@ -89,10 +108,12 @@ public class PlayerMove : MonoBehaviour
             {
                 //kill target
                 Debug.Log("hit gnome");
-                points = points += 1;
+                PointInc();
                 pointtext.text = points.ToString();
                 gnomehit = hit.collider.gameObject;
-                Debug.Log(points);
+                Animator enemygnomeanim = gnomehit.GetComponent<Animator>();
+                enemygnomeanim.SetBool("isDead", true);
+                
                 //hit sound
                 HitTarget(hit.point);
                 

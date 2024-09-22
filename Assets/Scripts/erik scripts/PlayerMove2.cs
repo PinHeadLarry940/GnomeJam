@@ -9,6 +9,7 @@ public class PlayerMove2 : MonoBehaviour
     public Animator knifeAnimator;
     public GameObject gnomeMesh;
     public GameObject hitFX;
+    public Animator gnomeAnimator;
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -61,6 +62,7 @@ public class PlayerMove2 : MonoBehaviour
     bool attacking = false;
     public bool readytoatk = true;
     public int points;
+    private bool pointsincreased;
     public TextMeshProUGUI pointtext;
 
     public void Attack()
@@ -80,10 +82,32 @@ public class PlayerMove2 : MonoBehaviour
 
     }
 
+    private void PointInc()
+    {
+        if (!pointsincreased)
+        {
+            points = points += 1;
+            pointsincreased = true;
+            Invoke(nameof(PointInc), 2f);
+        }
+
+
+    }
+
+    private void PointBuffer()
+    {
+
+        pointsincreased = false;
+    }
+
+
+
+
+
     private void ATKRaycast()
     {
         Debug.Log("atk");
-
+        GameObject gnomehit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
         {
 
@@ -92,9 +116,12 @@ public class PlayerMove2 : MonoBehaviour
                 //kill target
                 Debug.Log("hit gnome");
                 //hit sound
-                points = points += 1;
+                PointInc();
                 pointtext.text = points.ToString();
+                gnomehit = hit.collider.gameObject;
                 Debug.Log(points);
+                Animator enemygnomeanim = gnomehit.GetComponent<Animator>();
+                enemygnomeanim.SetBool("isDead", true);
                 HitTarget(hit.point);
                
             }
@@ -122,6 +149,7 @@ public class PlayerMove2 : MonoBehaviour
        
 
     }
+
 
 
 
