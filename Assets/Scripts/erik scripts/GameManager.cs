@@ -89,16 +89,25 @@ public class GameManager : MonoBehaviour
     }
     void MoveToSpawn()
     {
-        //move all the players to their spawn points
-        Debug.Log("move");
-        Rigidbody Player1RB = Player1.GetComponent<Rigidbody>();
-        Rigidbody Player2RB = Player2.GetComponent<Rigidbody>();
-        Rigidbody Player3RB = Player3.GetComponent<Rigidbody>();
-        Rigidbody Player4RB = Player4.GetComponent<Rigidbody>();
-        Player1RB.MovePosition(playerspawn1.position);
-        Player2RB.MovePosition(playerspawn2.position);
-        Player3RB.MovePosition(playerspawn3.position);
-        Player4RB.MovePosition(playerspawn4.position);
+        //move all the players to their spawn points depending on the gamemode
+        if (twoplayermode)
+        {
+            Rigidbody Player1RB = Player1.GetComponent<Rigidbody>();
+            Rigidbody Player2RB = Player2.GetComponent<Rigidbody>();
+            Player1RB.MovePosition(playerspawn1.position);
+            Player2RB.MovePosition(playerspawn2.position);
+        }
+        if (fourlayermode)
+        {
+            Rigidbody Player1RB = Player1.GetComponent<Rigidbody>();
+            Rigidbody Player2RB = Player2.GetComponent<Rigidbody>();
+            Rigidbody Player3RB = Player3.GetComponent<Rigidbody>();
+            Rigidbody Player4RB = Player4.GetComponent<Rigidbody>();
+            Player1RB.MovePosition(playerspawn1.position);
+            Player2RB.MovePosition(playerspawn2.position);
+            Player3RB.MovePosition(playerspawn3.position);
+            Player4RB.MovePosition(playerspawn4.position);
+        }
     }
 
     private void Update()
