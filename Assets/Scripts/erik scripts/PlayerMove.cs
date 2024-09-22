@@ -86,7 +86,7 @@ public class PlayerMove : MonoBehaviour
         {
             points = points += 1;
             pointsincreased = true;
-            Invoke(nameof(PointInc), 2f);
+            Invoke(nameof(PointBuffer), 2f);
         }
        
 
@@ -102,7 +102,11 @@ public class PlayerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Animator enemygnomeanim = GameObject.Find("Player").GetComponent<Animator>();
+        PlayerMove pmove = GameObject.Find("Player").GetComponent<PlayerMove>();
+        GameObject enemygnomemesh = pmove.gnomeMesh;
+        enemygnomemesh.SetActive(true);
         enemygnomeanim.SetBool("isDead", false);
+        enemygnomeanim.Play("IDLE");
         GameManager.Instance.MoveToSpawn();
 
     }
