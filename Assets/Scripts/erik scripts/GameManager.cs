@@ -5,6 +5,9 @@ using UnityEngine;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+
+    public static GameManager Instance;
+
     public float knifeTime = 30f;
     private float currentKnifeTime = 0f;
 
@@ -44,6 +47,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         twoplayermode = true;   
 
         if(twoplayermode) 
@@ -87,7 +96,7 @@ public class GameManager : MonoBehaviour
 
 
     }
-    void MoveToSpawn()
+    public void MoveToSpawn()
     {
         //move all the players to their spawn points depending on the gamemode
         if (twoplayermode)
@@ -110,6 +119,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+   
     private void Update()
     {
         if (TimerOn)

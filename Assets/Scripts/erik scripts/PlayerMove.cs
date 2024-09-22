@@ -97,6 +97,17 @@ public class PlayerMove : MonoBehaviour
 
         pointsincreased = false;
     }
+
+    public IEnumerator MoveToSpawn2()
+    {
+        yield return new WaitForSeconds(3);
+        Animator enemygnomeanim = GameObject.Find("Player").GetComponent<Animator>();
+        enemygnomeanim.SetBool("isDead", false);
+        GameManager.Instance.MoveToSpawn();
+
+    }
+
+
     private void ATKRaycast()
     {
         Debug.Log("atk");
@@ -113,7 +124,8 @@ public class PlayerMove : MonoBehaviour
                 gnomehit = hit.collider.gameObject;
                 Animator enemygnomeanim = gnomehit.GetComponent<Animator>();
                 enemygnomeanim.SetBool("isDead", true);
-                
+                //Invoke(nameof(GameManager.Instance.MoveToSpawn), 2f);
+                StartCoroutine(MoveToSpawn2());
                 //hit sound
                 HitTarget(hit.point);
                 

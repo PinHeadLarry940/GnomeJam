@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMove2 : MonoBehaviour
 {
@@ -100,7 +101,14 @@ public class PlayerMove2 : MonoBehaviour
         pointsincreased = false;
     }
 
+    public IEnumerator MoveToSpawn2()
+    {
+        yield return new WaitForSeconds(3);
+        Animator enemygnomeanim = GameObject.Find("Player 2").GetComponent<Animator>();
+        enemygnomeanim.SetBool("isDead", false);
+        GameManager.Instance.MoveToSpawn();
 
+    }
 
 
 
@@ -122,7 +130,11 @@ public class PlayerMove2 : MonoBehaviour
                 Debug.Log(points);
                 Animator enemygnomeanim = gnomehit.GetComponent<Animator>();
                 enemygnomeanim.SetBool("isDead", true);
+                // Invoke(nameof(GameManager.Instance.MoveToSpawn), 2f);
+                StartCoroutine(MoveToSpawn2());
+                
                 HitTarget(hit.point);
+               
                
             }
 
