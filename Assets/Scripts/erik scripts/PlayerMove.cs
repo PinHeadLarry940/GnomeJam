@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameObject cam;
+    public Animator knifeAnimator;
+    public GameObject gnomeMesh;
+    public Transform target;
     public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -24,6 +28,7 @@ public class PlayerMove : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode atkKey = KeyCode.Mouse0;
     public float playerHeight;
     public LayerMask watGround;
     bool grounded;
@@ -42,6 +47,70 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody rb;
 
+
+    //attacking 
+    public float atkDist = 1f;
+    public float atkSpeed = 1f;
+    public float atkDelay = .4f;
+    public LayerMask atkLayer;
+    public AudioSource audiosource;
+    public AudioClip swingSound;
+    public AudioClip hitSound;
+
+    bool attacking = false;
+    public bool readytoatk = true;
+
+    public void Attack()
+    {
+        if (!readytoatk || attacking) return;
+
+        readytoatk = false;
+        attacking = true;
+        knifeAnimator.SetBool("isATK", true);
+        Invoke(nameof(ResetATK), atkSpeed);
+        Invoke(nameof(ATKRaycast), atkDelay);
+
+        audiosource.pitch = Random.Range(0.9f, 1.1f);
+        audiosource.PlayOneShot(swingSound);
+
+    }
+
+    private void ATKRaycast()
+    {
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, atkDist, atkLayer))
+        {
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                //kill target
+
+                //hit sound
+                HitTarget(hit.point);
+
+            }
+
+        }
+
+    }
+
+    private void ResetATK()
+    {
+
+        attacking = false;
+        readytoatk = true;
+        knifeAnimator.SetBool("isATK", false);
+    }
+
+
+    private void HitTarget(Vector3 pos)
+    {
+        audiosource.pitch = 1;
+        audiosource.PlayOneShot(hitSound);
+
+
+    }
+
+
     public MovementState state;
     public enum MovementState
     {
@@ -54,7 +123,7 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;   
+       // rb.freezeRotation = true;   
         readyToJump = true;
 
         startYscale = transform.localScale.y;
@@ -79,8 +148,28 @@ public class PlayerMove : MonoBehaviour
         else
             rb.drag = 0;
 
+
+        if (Input.GetKey(atkKey))
+        {
+            Attack();
+            //play anims
+        }
+        //Vector3 look_xz = new Vector3(target.position.x, target.position.z, 0);
+        //gnomeMesh.transform.LookAt(look_xz, Vector3.up);
+        //float angle = Mathf.Atan2(cam.transform.forward.z, cam.transform.forward.x) * Mathf.Rad2Deg;
+ 
+        var rotation = cam.transform.localRotation;
+        rotation.x = 0;
+        rotation.z = 0;
+        gnomeMesh.transform.localRotation = rotation;
+
+        //gnomeMesh.transform.RotateAround(transform.position, Vector3.up, angle);
+
+        //gnomeMesh.transform.forward = cam.transform.forward;
+        //gnomeMesh.transform.LookAt(target, Vector3.up);
+        //Debug.Log("atk ready =" + readytoatk);
         //Debug.Log("ready to jump" + readyToJump);
-        Debug.Log("am i on ground?" + grounded);
+        //Debug.Log("am i on ground?" + grounded);
         //Debug.DrawRay()
     }
     private void MyInput()
