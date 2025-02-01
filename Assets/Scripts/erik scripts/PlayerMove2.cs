@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.InputSystem;
 
 public class PlayerMove2 : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMove2 : MonoBehaviour
     public float sprintSpeed;
     public float crouchSpeed;
     public bool ismoving = false;
+    public bool ispausing = false;
     public float groundDrag;
 
     public float jumpForce;
@@ -32,6 +34,7 @@ public class PlayerMove2 : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
     public KeyCode atkKey = KeyCode.Mouse0;
+    public KeyCode pauseKey = KeyCode.JoystickButton0;
     public float playerHeight;
     public LayerMask watGround;
     bool grounded;
@@ -261,6 +264,14 @@ public class PlayerMove2 : MonoBehaviour
         if (Input.GetKeyUp(crouchKey)) 
         {
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+        }
+
+        //pause
+        if (Input.GetKeyDown(pauseKey))
+        {
+            Debug.Log("the game is paused?");
+            ispausing = true;
+            //going to try to use the new input system to make this work
         }
     }
 

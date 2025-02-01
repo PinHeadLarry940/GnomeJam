@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     public float sprintSpeed;
     public float crouchSpeed;
     public bool ismoving = false;
+    public bool ispausing = false;
     public float groundDrag;
 
     public float jumpForce;
@@ -32,6 +34,7 @@ public class PlayerMove : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
     public KeyCode atkKey = KeyCode.Mouse0;
+    public KeyCode pauseKey = KeyCode.Escape;
     public float playerHeight;
     public LayerMask watGround;
     bool grounded;
@@ -102,7 +105,7 @@ public class PlayerMove : MonoBehaviour
     public IEnumerator MoveToSpawn2()
     {
         //need this to only do it once, if you stab the body again it shouldn't run this again
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         Animator enemygnomeanim = GameObject.Find("Player").GetComponent<Animator>();
         PlayerMove pmove = GameObject.Find("Player").GetComponent<PlayerMove>();
         GameObject enemygnomemesh = pmove.gnomeMesh;
@@ -256,6 +259,15 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyUp(crouchKey)) 
         {
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+        }
+
+
+        //pause
+        if (Input.GetKeyDown(pauseKey))
+        {
+            Debug.Log("the game is paused?");
+            ispausing = true;
+            //going to try to use the new input system to make this work
         }
     }
 
